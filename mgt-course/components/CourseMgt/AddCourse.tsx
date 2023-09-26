@@ -1,0 +1,139 @@
+"use client";
+import { BASE_URL } from "@/constant";
+import axios from "axios";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
+const AddCourse = () => {
+  const [msg, setMsg] = useState("");
+  const {
+    reset,
+
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const pathName = usePathname();
+  const router = useRouter();
+
+  const refreshServer = () => {
+    return router.replace(pathName);
+  };
+
+  const onSubmit = async (values: any) => {
+    try {
+      const formdata = {
+        title: values["title"],
+        lecturer: values["lecturer"],
+        course_time: values["time"],
+      };
+
+      const { data } = await axios.post(`${BASE_URL}/course`, formdata);
+
+      if (data) {
+        setMsg("Course added successfully");
+        reset();
+        refreshServer();
+      }
+    } catch (err: any) {
+      if (err.response) {
+        setMsg(err.response.data.message);
+      } else setMsg("Somthing went wrong");
+    }
+  };
+  return (
+    <div className="bg-white shadow-lg animate__fadeIn animate__animated rounded-md w-full md:w-[25rem] p-7">
+      <p className="text-center text-lg text-[#1e202a] font-semibold">
+        Create Course
+      </p>
+      <p className="text-center text-sm text-[#7c7f8a] mb-5">
+        Provide details of course
+      </p>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className=" grid gap-2 grid-cols-1 w-full mb-4   ">
+          <div className="">
+            <label htmlFor="title" className="text-xs text-textColor/70 mb-1.5">
+              Title
+            </label>
+            <input
+              {...register("title", {
+                required: "This field is required",
+              })}
+              type={"text"}
+              className="border w-full p-2 form-control rounded-md focus:border-orange focus:outline-none focus:ring-1 focus:ring-orange focus:ring-opacity-5"
+              // placeholder={"First Name"}
+            />
+            {errors.title !== undefined && (
+              <p className="text-red-600 text-xs py-2">
+                This field is required
+              </p>
+            )}
+          </div>
+
+          <div className="">
+            <label
+              htmlFor="lecturer"
+              className="text-xs text-textColor/70 mb-1.5"
+            >
+              Lecturer
+            </label>
+            <input
+              id="lecturer"
+              {...register("lecturer", { required: "this field is required" })}
+              type={"text"}
+              className="border w-full p-2 form-control rounded-md focus:border-orange focus:outline-none focus:ring-1 focus:ring-orange focus:ring-opacity-5"
+              // placeholder={"First Name"}
+            />
+            {errors.lecturer !== undefined && (
+              <p className="text-red-600 text-xs py-2">
+                This field is required
+              </p>
+            )}
+          </div>
+
+          <div className="">
+            <label htmlFor="time" className="text-xs text-textColor/70 mb-1.5">
+              Time
+            </label>
+            <input
+              id="time"
+              {...register("time", {
+                required: "THis field is required",
+              })}
+              type={"text"}
+              className="border w-full p-2 form-control rounded-md focus:border-orange focus:outline-none focus:ring-1 focus:ring-orange focus:ring-opacity-5"
+              // placeholder={"First Name"}
+            />
+            {errors.time !== undefined && (
+              <p className="text-red-600 text-xs py-2">
+                This field is required
+              </p>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="text-white bg-primary rounded-md px-2 py-1 "
+        >
+          Submit
+        </button>
+
+        <p
+          className={
+            msg === "Course added successfully"
+              ? "text-green-700"
+              : "text-red-700" + "mt-2 text-sm"
+          }
+        >
+          {msg}
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default AddCourse;

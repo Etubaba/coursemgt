@@ -8,9 +8,17 @@ import axios from "axios";
 import { BASE_URL } from "@/constant";
 import Loader from "../common/Loader";
 import { useStore } from "@/store";
+import { usePathname, useRouter } from "next/navigation";
 
 const Course = ({ item }: { item: CourseType }) => {
   const [loading, setLoading] = useState(false);
+
+  const pathName = usePathname();
+  const router = useRouter();
+  const refreshServer = () => {
+    return router.replace(pathName);
+  };
+
   const deleteCourse = async (id: string, course: string) => {
     setLoading(true);
     try {

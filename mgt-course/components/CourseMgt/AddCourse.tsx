@@ -2,7 +2,7 @@
 import { BASE_URL } from "@/constant";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Loader from "../common/Loader";
 import { useStore } from "@/store";
@@ -12,14 +12,22 @@ const AddCourse = () => {
   const [loading, setLoading] = useState(false);
 
   const editValues = useStore((state) => state.editProps);
+  const finishEdit = useStore((state) => state.setEditData);
   const {
     reset,
-
+    setValue,
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (editValues === null) return;
+    setValue("title", editValues?.title);
+    setValue("lecturer", editValues?.lecturer);
+    setValue("time", editValues?.course_time);
+  }, [editValues?.title]);
 
   const pathName = usePathname();
   const router = useRouter();
@@ -52,6 +60,40 @@ const AddCourse = () => {
       } else setMsg("Somthing went wrong");
     }
   };
+
+  const updateCourse = async (values: any) => {
+    setLoading(true);
+    try {
+      const formdata = {
+        title: values["title"],
+        lecturer: values["lecturer"],
+        course_time: values["time"],
+      };
+
+      const { data } = await axios.put(
+        `${BASE_URL}/course/${editValues?.id}`,
+        formdata
+      );
+
+      if (data) {
+        setMsg("Course updated successfully");
+        reset();
+        refreshServer();
+        setLoading(false);
+        finishEdit(null);
+      }
+    } catch (err: any) {
+      setLoading(false);
+      if (err.response) {
+        setMsg(err.response.data.message);
+      } else setMsg("Somthing went wrong");
+    }
+  };
+
+  const action = (value: any) => {
+    if (editValues === null) onSubmit(value);
+    else updateCourse(value);
+  };
   return (
     <div className="bg-white shadow-lg animate__fadeIn animate__animated rounded-md w-full md:w-[25rem] p-7">
       <p className="text-center text-lg text-[#1e202a] font-semibold">
@@ -61,7 +103,7 @@ const AddCourse = () => {
         Provide details of course
       </p>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(action)}>
         <div className=" grid gap-2 grid-cols-1 w-full mb-4   ">
           <div className="">
             <label htmlFor="title" className="text-xs text-textColor/70 mb-1.5">
@@ -128,15 +170,20 @@ const AddCourse = () => {
           type="submit"
           className="text-white bg-primary flex justify-center items-center min-w-[90px] rounded-md px-2 py-1 "
         >
-          {loading ? <Loader /> : <p> Submit</p>}
+          {loading ? (
+            <Loader />
+          ) : (
+            <p> {editValues === null ? "Submit" : "Update"}</p>
+          )}
         </button>
 
         <p
-          className={
-            msg === "Course added successfully"
+          className={`mt-5 text-xs${
+            msg === "Course added successfully" ||
+            msg === "Course updated successfully"
               ? "text-green-700"
-              : "text-red-700" + "mt-5 text-xs"
-          }
+              : "text-red-700"
+          }`}
         >
           {msg}
         </p>

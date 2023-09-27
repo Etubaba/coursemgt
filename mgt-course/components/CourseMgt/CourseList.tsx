@@ -10,7 +10,7 @@ import { CourseType } from "@/types";
 const CourseList = async () => {
   const [allCourses] = await getData([`${BASE_URL}/course`]);
 
-  const { data: courses } = allCourses;
+  const courses = allCourses?.data;
 
   return (
     <div>

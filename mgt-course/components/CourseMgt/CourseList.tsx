@@ -17,7 +17,7 @@ const CourseList = async () => {
       <h1 className="mb-6 font-semibold">Course List</h1>
 
       <div>
-        {courses.map((each: CourseType, i: number) => (
+        {courses?.map((each: CourseType, i: number) => (
           <Course key={i} item={each} />
         ))}
       </div>

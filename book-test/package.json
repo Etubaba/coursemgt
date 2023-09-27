@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/main.ts",
     "build": " rimraf dist && npx tsc ",
+    "postinstall": "npx prisma generate",
     "start": "npm run build && node dist/src/main.js"
   },
   "author": "",

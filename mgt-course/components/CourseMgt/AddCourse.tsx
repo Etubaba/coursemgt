@@ -4,14 +4,20 @@ import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Loader from "../common/Loader";
+import { useStore } from "@/store";
 
 const AddCourse = () => {
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const editValues = useStore((state) => state.editProps);
   const {
     reset,
 
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm();
 
@@ -23,6 +29,7 @@ const AddCourse = () => {
   };
 
   const onSubmit = async (values: any) => {
+    setLoading(true);
     try {
       const formdata = {
         title: values["title"],
@@ -36,8 +43,10 @@ const AddCourse = () => {
         setMsg("Course added successfully");
         reset();
         refreshServer();
+        setLoading(false);
       }
     } catch (err: any) {
+      setLoading(false);
       if (err.response) {
         setMsg(err.response.data.message);
       } else setMsg("Somthing went wrong");
@@ -117,16 +126,16 @@ const AddCourse = () => {
 
         <button
           type="submit"
-          className="text-white bg-primary rounded-md px-2 py-1 "
+          className="text-white bg-primary flex justify-center items-center min-w-[90px] rounded-md px-2 py-1 "
         >
-          Submit
+          {loading ? <Loader /> : <p> Submit</p>}
         </button>
 
         <p
           className={
             msg === "Course added successfully"
               ? "text-green-700"
-              : "text-red-700" + "mt-2 text-sm"
+              : "text-red-700" + "mt-5 text-xs"
           }
         >
           {msg}

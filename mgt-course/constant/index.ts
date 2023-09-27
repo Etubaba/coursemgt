@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:4010/api";
+export const BASE_URL = "https://course-server-iota.vercel.app/api";

@@ -43,6 +43,8 @@ export class PostService {
         id: string;
         title: string;
         content: string;
+        image: string;
+        slug: string;
         created_at: Date;
         updated_at: Date;
         userId: string;
@@ -70,7 +72,12 @@ export class PostService {
 
       const allPosts = paginatedPost(postData);
 
-      return { statusCode: 200, data: allPosts, post_per_page: 20, total_page };
+      return {
+        statusCode: 200,
+        data: allPosts,
+        post_per_page: itemsPerPage,
+        total_page,
+      };
     } catch (err) {
       return { statusCode: 500, message: err.message };
     }

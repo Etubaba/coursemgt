@@ -11,6 +11,7 @@ import { BsNewspaper } from "react-icons/bs";
 
 const AllBlogs = () => {
   const [search, setSearch] = useState<string>("");
+  const page = 1;
 
   const {
     data: blogs,
@@ -19,12 +20,11 @@ const AllBlogs = () => {
   } = useQuery({
     queryKey: ["blog"],
     queryFn: async () => {
-      const { data } = await axios.get(`${BASE_URL}/blog`);
-      return data as BlogType[];
+      const { data } = await axios.get(`${BASE_URL}/blog?page=${page}`);
+      return data.data as BlogType[];
     },
   });
 
-  console.log(error);
   return (
     <div className="my-10 px-4 md:px-20 2xl:max-w-7xl 2xl:mx-auto">
       <div className="flex md:flex-row flex-col space-y-4 md:space-y-0 justify-between  mb-10 md:items-center">

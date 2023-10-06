@@ -27,6 +27,8 @@ export declare class PostService {
             id: string;
             title: string;
             content: string;
+            image: string;
+            slug: string;
             created_at: Date;
             updated_at: Date;
             userId: string;

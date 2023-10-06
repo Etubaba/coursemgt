@@ -52,7 +52,12 @@ class PostService {
             };
             const total_page = totalCalc(postData.length);
             const allPosts = paginatedPost(postData);
-            return { statusCode: 200, data: allPosts, post_per_page: 20, total_page };
+            return {
+                statusCode: 200,
+                data: allPosts,
+                post_per_page: itemsPerPage,
+                total_page,
+            };
         }
         catch (err) {
             return { statusCode: 500, message: err.message };

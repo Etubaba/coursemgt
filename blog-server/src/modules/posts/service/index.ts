@@ -21,11 +21,43 @@ export class PostService {
     }
   }
 
-  async PostList() {
+  async PostList(query: { page: string }) {
+    const { page } = query;
     try {
-      const allPosts = await prisma.posts.findMany({});
+      const postData = await prisma.posts.findMany({});
 
-      return { statusCode: 200, data: allPosts };
+      type PostType = {
+        id: string;
+        title: string;
+        content: string;
+        created_at: Date;
+        updated_at: Date;
+        userId: string;
+      };
+      const itemsPerPage = 20;
+
+      const paginatedPost = (posts: PostType[]): PostType[] => {
+        if (posts.length < itemsPerPage) return posts;
+        const pageNumber = parseInt(page, 10) || 1;
+
+        const start = (pageNumber - 1) * itemsPerPage + 1;
+        const end = pageNumber * itemsPerPage;
+        const paginated = posts.slice(start, end);
+        return paginated;
+      };
+
+      const totalCalc = (length: number) => {
+        if (length < itemsPerPage) return 1;
+        const result = length / itemsPerPage;
+        if (result % 1 !== 0) return Math.floor(result) + 1;
+        return result;
+      };
+
+      const total_page = totalCalc(postData.length);
+
+      const allPosts = paginatedPost(postData);
+
+      return { statusCode: 200, data: allPosts, post_per_page: 20, total_page };
     } catch (err) {
       return { statusCode: 500, message: err.message };
     }

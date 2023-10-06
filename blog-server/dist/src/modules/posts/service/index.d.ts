@@ -17,7 +17,9 @@ export declare class PostService {
         message: any;
         data?: undefined;
     }>;
-    PostList(): Promise<{
+    PostList(query: {
+        page: string;
+    }): Promise<{
         statusCode: number;
         data: {
             id: string;
@@ -27,11 +29,15 @@ export declare class PostService {
             updated_at: Date;
             userId: string;
         }[];
+        post_per_page: number;
+        total_page: number;
         message?: undefined;
     } | {
         statusCode: number;
         message: any;
         data?: undefined;
+        post_per_page?: undefined;
+        total_page?: undefined;
     }>;
     singlePost(id: string): Promise<{
         statusCode: number;

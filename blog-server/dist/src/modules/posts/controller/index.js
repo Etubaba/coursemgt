@@ -16,7 +16,8 @@ class PostController {
         res.status(response.statusCode).json(response);
     }
     async allPost(req, res) {
-        const response = await postService.PostList();
+        const query = req.query;
+        const response = await postService.PostList(query);
         res.status(response.statusCode).json(response);
     }
     async singlePost(req, res) {

@@ -23,6 +23,8 @@ model posts {
   title      String
   content    String
   created_at DateTime   @default(now())
+  image      String
+  slug       String
   updated_at DateTime   @updatedAt
   user       users      @relation(fields: [userId], references: [id])
   comments   comments[]

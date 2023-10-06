@@ -17,6 +17,9 @@ app.use(cors({ origin: (0, config_1.default)().cors.origin, methods: (0, config_
 app.use(`/`, routes_1.default);
 app.use(`/`, routes_2.default);
 app.use(`/`, routes_3.default);
+app.get("/", (req, res) => {
+    res.send("Server Working Perfectly 👍🚀");
+});
 app.listen(port, () => {
     exports.prisma
         .$connect()

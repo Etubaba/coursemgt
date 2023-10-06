@@ -1,12 +1,17 @@
-import { CourseType } from "@/types";
+import { UserPropType } from "@/types";
 import { create } from "zustand";
-// import { devtools, persist } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
-const store = (set: any) => ({
-  editProps: null as null | CourseType,
-  setEditData: (editProps: CourseType | null) => {
-    set({ editProps });
+const userStore = (set: any) => ({
+  user: null,
+
+  authenticateUser: (user: UserPropType | null) => {
+    set({ user });
   },
 });
 
-export const useStore = create(store);
+export const useAuthStore = create(
+  persist(devtools(userStore), {
+    name: "_tysfjj",
+  })
+);

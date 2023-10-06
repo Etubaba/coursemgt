@@ -3,11 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const main_1 = require("../../../main");
 class PostService {
-    async createPost(createPostDto) {
+    async createPost(createPostDto, image) {
         try {
             const { title, content, userId } = createPostDto;
+            function convertToSlug(title) {
+                if (!title)
+                    return undefined;
+                const slug = title
+                    .toLowerCase()
+                    .replace(/ /g, "-")
+                    .replace(/[^\w-]+/g, "") + Math.random().toString(36).slice(2, 7);
+                return slug;
+            }
+            const slug = convertToSlug(title);
             const Post = await main_1.prisma.posts.create({
-                data: { title, content, userId },
+                data: { title, content, userId, image, slug },
             });
             return {
                 statusCode: 201,

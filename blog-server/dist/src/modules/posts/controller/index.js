@@ -5,8 +5,10 @@ const service_1 = require("../service");
 const postService = new service_1.PostService();
 class PostController {
     async createPostController(req, res) {
+        var _a;
         const createPostDto = req.body;
-        const response = await postService.createPost(createPostDto);
+        const image = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
+        const response = await postService.createPost(createPostDto, image);
         res.status(response.statusCode).json(response);
     }
     async updatePostController(req, res) {

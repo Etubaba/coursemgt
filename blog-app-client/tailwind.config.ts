@@ -9,9 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#E8238D",
-        darkbg: "#101923",
+        primary: "#c2410c",
+        textcolor: "#55575F",
+        textwhite: "#E1E7EF",
+        title: "#1E202B",
+        darkbg: "#1B242F",
+        adminbg: "#FBFBFF",
+        dark2: "#1E293B",
+        lightdark: "#262F38",
+        darkborder: "#283344",
       },
+
+      // fontFamily: {
+      //   gilroyRegular: ["Gilroy-regular", "sans-serif"],
+      //   sacramento: ["sacramento"],
+      // },
     },
   },
   plugins: [],

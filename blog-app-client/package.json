@@ -1,5 +1,5 @@
 {
-  "name": "mgt-course",
+  "name": "blog-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.35.7",
     "axios": "^1.5.1",
     "next": "latest",
     "react": "latest",

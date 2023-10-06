@@ -1,11 +1,9 @@
-import CourseMgt from "@/components/CourseMgt";
-import Hero from "@/components/Hero";
+import AllBlogs from "@/components/home/AllBlogs";
 
 export default function Home() {
   return (
     <main className="">
-      <Hero />
-      <CourseMgt />
+      <AllBlogs />
     </main>
   );
 }

@@ -3,13 +3,26 @@ import { CreatePostDto } from "../dto/createPostDto";
 import { UpdatePostDto } from "../dto/updatePostDto";
 
 export class PostService {
-  async createPost(createPostDto: CreatePostDto) {
+  async createPost(createPostDto: CreatePostDto, image: string) {
     try {
       const { title, content, userId }: CreatePostDto = createPostDto;
 
+      function convertToSlug(title: string): string {
+        if (!title) return undefined;
+        const slug =
+          title
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "") + Math.random().toString(36).slice(2, 7);
+
+        return slug;
+      }
+
+      const slug = convertToSlug(title);
+
       //create Posts
       const Post = await prisma.posts.create({
-        data: { title, content, userId },
+        data: { title, content, userId, image, slug },
       });
 
       return {

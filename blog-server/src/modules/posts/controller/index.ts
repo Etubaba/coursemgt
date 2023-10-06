@@ -7,7 +7,8 @@ const postService = new PostService();
 export class PostController {
   async createPostController(req: Request, res: Response) {
     const createPostDto: CreatePostDto = req.body;
-    const response = await postService.createPost(createPostDto);
+    const image = req.file?.path;
+    const response = await postService.createPost(createPostDto, image);
     res.status(response.statusCode).json(response);
   }
 

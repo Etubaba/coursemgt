@@ -1,13 +1,15 @@
 import { CreatePostDto } from "../dto/createPostDto";
 import { UpdatePostDto } from "../dto/updatePostDto";
 export declare class PostService {
-    createPost(createPostDto: CreatePostDto): Promise<{
+    createPost(createPostDto: CreatePostDto, image: string): Promise<{
         statusCode: number;
         data: {
             id: string;
             title: string;
             content: string;
             created_at: Date;
+            image: string;
+            slug: string;
             updated_at: Date;
             userId: string;
         };
@@ -59,6 +61,8 @@ export declare class PostService {
             title: string;
             content: string;
             created_at: Date;
+            image: string;
+            slug: string;
             updated_at: Date;
             userId: string;
         };
@@ -75,6 +79,8 @@ export declare class PostService {
             title: string;
             content: string;
             created_at: Date;
+            image: string;
+            slug: string;
             updated_at: Date;
             userId: string;
         };

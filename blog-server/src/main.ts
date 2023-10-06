@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as cors from "cors";
 import config from "../config";
+import { Request, Response } from "express";
 
 import { PrismaClient } from "@prisma/client";
 import postRoute from "./modules/posts/routes";
@@ -19,6 +20,10 @@ app.use(cors({ origin: config().cors.origin, methods: config().cors.methods }));
 app.use(`/`, postRoute);
 app.use(`/`, commentRoute);
 app.use(`/`, userRoute);
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Server Working Perfectly 👍🚀");
+});
 
 app.listen(port, () => {
   prisma

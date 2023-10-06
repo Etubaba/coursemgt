@@ -1,12 +1,10 @@
 import { IsNotEmpty } from "class-validator";
 
-export class CreateCourseDto {
+export class CreateCommentDto {
   @IsNotEmpty()
-  title: string;
-
+  comment: string;
   @IsNotEmpty()
-  lecturer: string;
-
+  author: string;
   @IsNotEmpty()
-  course_time: string;
+  postId: string;
 }

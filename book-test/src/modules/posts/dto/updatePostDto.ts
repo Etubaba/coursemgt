@@ -1,12 +1,10 @@
 import { IsOptional } from "class-validator";
 
-export class UpdateCourseDto {
+export class UpdatePostDto {
   @IsOptional()
   title: string;
-
   @IsOptional()
-  lecturer: string;
-
+  content: string;
   @IsOptional()
-  couser_time: string;
+  userId: string;
 }

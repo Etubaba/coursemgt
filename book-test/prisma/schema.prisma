@@ -10,9 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model course {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  lecturer    String
-  course_time String
+model users {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  full_name String
+  email     String  @unique
+  password  String
+  posts     posts[]
+}
+
+model posts {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  content    String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  user       users      @relation(fields: [userId], references: [id])
+  comments   comments[]
+  userId     String     @db.ObjectId
+}
+
+model comments {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  comment String
+  post    posts  @relation(fields: [postId], references: [id])
+  postId  String @db.ObjectId
+  author  String
 }

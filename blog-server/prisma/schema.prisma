@@ -32,9 +32,10 @@ model posts {
 }
 
 model comments {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  comment String
-  post    posts  @relation(fields: [postId], references: [id])
-  postId  String @db.ObjectId
-  author  String
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment    String
+  post       posts    @relation(fields: [postId], references: [id])
+  postId     String   @db.ObjectId
+  author     String
+  created_at DateTime @default(now())
 }

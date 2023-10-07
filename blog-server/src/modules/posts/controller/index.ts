@@ -26,8 +26,8 @@ export class PostController {
   }
 
   async singlePost(req: Request, res: Response) {
-    const id = req.params.id;
-    const response = await postService.singlePost(id);
+    const slug = req.params.slug;
+    const response = await postService.singlePost(slug);
     res.status(response.statusCode).json(response);
   }
 

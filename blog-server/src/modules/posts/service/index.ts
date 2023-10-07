@@ -82,12 +82,12 @@ export class PostService {
       return { statusCode: 500, message: err.message };
     }
   }
-  async singlePost(id: string) {
+  async singlePost(slug: string) {
     try {
       //check if record exist
       const Post = await prisma.posts.findUnique({
         where: {
-          id,
+          slug,
         },
         include: {
           comments: true,

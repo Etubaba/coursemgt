@@ -15,6 +15,13 @@ export type BlogType = {
   slug: string;
 };
 
+export type BlogResponseType = {
+  data: BlogType[];
+  post_per_page: number;
+  total_page: number;
+  statusCode: number;
+};
+
 export type UserPropType = {
   email: string;
   full_name: string;

@@ -10,8 +10,17 @@ const userStore = (set: any) => ({
   },
 });
 
+const paginationStore = (set: any) => ({
+  page: 1,
+  setPage: (count: number) => {
+    set({ page: count });
+  },
+});
+
 export const useAuthStore = create(
   persist(devtools(userStore), {
-    name: "_tysfjj",
+    name: "_user",
   })
 );
+
+export const usePagination = create(devtools(paginationStore));

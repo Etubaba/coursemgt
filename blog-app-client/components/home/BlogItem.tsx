@@ -5,10 +5,10 @@ const BlogItem = ({ post }: { post: BlogType }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
       <div className="md:w-64 w-80 mb-4 md:mb-0 h-auto  ">
-        <div className="w-full ">
+        <div className="w-full relative h-40 inline-block overflow-hidden">
           <img
             src={post.image}
-            className="w-full hover:opacity-50 mb-2 h-40 cursor-pointer "
+            className="w-full zoom-image hover:opacity-70 mb-2 h-full cursor-pointer "
             alt={post.title}
           />
         </div>

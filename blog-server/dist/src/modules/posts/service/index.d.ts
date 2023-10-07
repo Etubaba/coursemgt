@@ -43,7 +43,7 @@ export declare class PostService {
         post_per_page?: undefined;
         total_page?: undefined;
     }>;
-    singlePost(id: string): Promise<{
+    singlePost(slug: string): Promise<{
         statusCode: number;
         data: {
             user: {

@@ -63,11 +63,11 @@ class PostService {
             return { statusCode: 500, message: err.message };
         }
     }
-    async singlePost(id) {
+    async singlePost(slug) {
         try {
             const Post = await main_1.prisma.posts.findUnique({
                 where: {
-                    id,
+                    slug,
                 },
                 include: {
                     comments: true,

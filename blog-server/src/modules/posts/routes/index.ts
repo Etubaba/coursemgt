@@ -24,7 +24,7 @@ router.put(
   postController.updatePostController
 );
 router.get(
-  `${basePath}blog/:id`,
+  `${basePath}blog/:slug`,
 
   postController.singlePost
 );

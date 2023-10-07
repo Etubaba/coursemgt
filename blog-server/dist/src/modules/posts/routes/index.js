@@ -13,7 +13,7 @@ const upload = multer({ storage: index_1.default });
 const postController = new controller_1.PostController();
 router.post(`${basePath}blog`, upload.single("image"), (0, validateDto_1.validateDto)(createPostDto_1.CreatePostDto), postController.createPostController);
 router.put(`${basePath}blog/:id`, (0, validateDto_1.validateDto)(updatePostDto_1.UpdatePostDto), postController.updatePostController);
-router.get(`${basePath}blog/:id`, postController.singlePost);
+router.get(`${basePath}blog/:slug`, postController.singlePost);
 router.delete(`${basePath}blog/:id`, postController.deletePost);
 router.get(`${basePath}blog`, postController.allPost);
 exports.default = router;

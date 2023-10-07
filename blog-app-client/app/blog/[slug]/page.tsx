@@ -8,6 +8,9 @@ import React from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useQueries } from "@tanstack/react-query";
 import axios from "axios";
+import Comments from "@/components/home/blogdetails/Comments";
+import { CommentType } from "@/types";
+import BackDrop from "@/components/common/BackDrop";
 
 const page = () => {
   const { slug } = useParams();
@@ -30,8 +33,11 @@ const page = () => {
   const blog = postDetailsRes?.data?.data;
   const related = relatedPostRes?.data?.data;
 
+  const refetch = postDetailsRes.refetch;
+  if (postDetailsRes.isLoading || relatedPostRes.isLoading) return <BackDrop />;
+
   return (
-    <div className="my-10 px-4 md:px-20">
+    <div className="my-10 2xl:mx-auto 2xl:max-w-7xl px-4 md:px-20">
       <div className="md:max-w-6xl px-5 md:px-0 mx-auto my-10">
         <img
           src={blog?.image}
@@ -65,6 +71,13 @@ const page = () => {
           </div>{" "}
         </div>
 
+        <div className="mt-20">
+          <Comments
+            refetch={refetch}
+            postId={blog?.id}
+            commentList={blog?.comments as CommentType[]}
+          />
+        </div>
         <Divider />
 
         <h1 className=" text-xl my-10   text-title">Related Articles </h1>

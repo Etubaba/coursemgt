@@ -10,12 +10,13 @@ import BlogItem from "./BlogItem";
 import { BsNewspaper } from "react-icons/bs";
 import { usePagination } from "@/store";
 import Pagination from "../common/Pagination";
+import BackDrop from "../common/BackDrop";
 
 const AllBlogs = () => {
   const [search, setSearch] = useState<string>("");
   const page: number = usePagination((state) => state.page);
 
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["blog"],
     queryFn: async () => {
       const { data } = await axios.get(`${BASE_URL}/blog?page=${page}`);
@@ -24,6 +25,8 @@ const AllBlogs = () => {
   });
 
   const blogs = data?.data as BlogType[];
+
+  if (isLoading) return <BackDrop />;
 
   return (
     <div className="my-10 px-4 md:px-20 2xl:max-w-7xl 2xl:mx-auto">

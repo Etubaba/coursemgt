@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import TanstackProvider from "@/provider/TanstackProvider";
 import Header from "@/components/header/Header";
 import MobileNav from "@/components/header/MobileHeader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,8 @@ export default function RootLayout({
         <Header />
         <MobileNav />
         <TanstackProvider>{children}</TanstackProvider>
+
+        <ToastContainer hideProgressBar={true} theme="colored" />
       </body>
     </html>
   );

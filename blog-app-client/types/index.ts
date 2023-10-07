@@ -1,9 +1,10 @@
-export type CourseType = {
-  id: string;
-  title: string;
-  course_time: string;
-  lecturer: string;
+export type RegisterInputType = {
+  email: string;
+  password: string;
+  full_name: string;
 };
+
+export type LoginInputType = Omit<RegisterInputType, "full_name">;
 
 export type BlogType = {
   id: string;
@@ -27,3 +28,16 @@ export type UserPropType = {
   full_name: string;
   id: string;
 };
+
+export type CommentType = {
+  id: string;
+  comment: String;
+  postId: string;
+  author: string;
+  created_at: string;
+};
+
+export interface IPostComment {
+  author: string;
+  comment: string;
+}

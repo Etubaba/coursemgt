@@ -4,7 +4,7 @@ import BackDrop from "@/components/common/BackDrop";
 import Button from "@/components/common/Button";
 import { BASE_URL } from "@/constant";
 import { useAuthStore } from "@/store";
-import { BlogResponseType, BlogType, UserPropType } from "@/types";
+import { BlogType, UserPropType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
@@ -28,12 +28,10 @@ const page = () => {
     <div>
       {" "}
       <div className="flex md:flex-row mb-10  md:space-y-0 justify-between items-center">
-        <p className="text-lg text-title   tracking-wide font-semibold">
-          Blogs
-        </p>
+        <p className="text-lg text-title   tracking-wide font-semibold">Post</p>
         <Link href={"/admin/create_blog"}>
           {" "}
-          <Button text="Create Blog" />
+          <Button text="Create post" />
         </Link>
       </div>
       <BlogList refetch={refetch} blog={blogs} />

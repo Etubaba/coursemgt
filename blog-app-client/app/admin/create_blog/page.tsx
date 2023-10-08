@@ -142,7 +142,7 @@ const page = () => {
               "text-gray-500/60  text-xs md:text-base tracking-wide hover:underline"
             }
           >
-            Post
+            Posts
           </p>
         </Link>{" "}
         <span className="flex space-x-2">

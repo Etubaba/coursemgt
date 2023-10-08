@@ -7,6 +7,7 @@ export declare class CommentService {
             comment: string;
             postId: string;
             author: string;
+            created_at: Date;
         };
         message?: undefined;
     } | {

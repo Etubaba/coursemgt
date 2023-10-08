@@ -4,5 +4,6 @@ export declare class PostController {
     updatePostController(req: Request, res: Response): Promise<void>;
     allPost(req: Request, res: Response): Promise<void>;
     singlePost(req: Request, res: Response): Promise<void>;
+    userPosts(req: Request, res: Response): Promise<void>;
     deletePost(req: Request, res: Response): Promise<void>;
 }

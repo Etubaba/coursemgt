@@ -57,6 +57,7 @@ export declare class PostService {
                 comment: string;
                 postId: string;
                 author: string;
+                created_at: Date;
             }[];
         } & {
             id: string;
@@ -68,6 +69,24 @@ export declare class PostService {
             updated_at: Date;
             userId: string;
         };
+        message?: undefined;
+    } | {
+        statusCode: number;
+        message: any;
+        data?: undefined;
+    }>;
+    userPost(id: string): Promise<{
+        statusCode: number;
+        data: {
+            id: string;
+            title: string;
+            content: string;
+            created_at: Date;
+            image: string;
+            slug: string;
+            updated_at: Date;
+            userId: string;
+        }[];
         message?: undefined;
     } | {
         statusCode: number;

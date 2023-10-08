@@ -1,6 +1,9 @@
+import { useNavToggle } from "@/store";
 import { MenuProps } from "@/types/component";
 
 const Toggle = ({ setChecked, yes }: MenuProps): JSX.Element => {
+  const setNavToggle = useNavToggle((state) => state.setShow);
+  const show = useNavToggle((state) => state.show);
   return (
     <label
       className="relative p-5 flex justify-center items-center cursor-pointer"
@@ -9,7 +12,10 @@ const Toggle = ({ setChecked, yes }: MenuProps): JSX.Element => {
       <input
         id="checkbox"
         checked={yes}
-        onChange={(e) => setChecked(e.target.checked)}
+        onChange={(e) => {
+          setChecked(e.target.checked);
+          setNavToggle(!show);
+        }}
         type="checkbox"
         className="hidden"
       />

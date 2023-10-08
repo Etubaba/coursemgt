@@ -17,6 +17,13 @@ const paginationStore = (set: any) => ({
   },
 });
 
+const sideNavToggleStore = (set: any) => ({
+  show: false,
+  setShow: (truth: boolean) => {
+    set({ show: truth });
+  },
+});
+
 export const useAuthStore = create(
   persist(devtools(userStore), {
     name: "_user",
@@ -24,3 +31,5 @@ export const useAuthStore = create(
 );
 
 export const usePagination = create(devtools(paginationStore));
+
+export const useNavToggle = create(devtools(sideNavToggleStore));

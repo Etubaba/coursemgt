@@ -26,7 +26,7 @@ model posts {
   image      String
   slug       String     @unique
   updated_at DateTime   @updatedAt
-  user       users      @relation(fields: [userId], references: [id])
+  user       users      @relation(fields: [userId], references: [id], onDelete: Cascade)
   comments   comments[]
   userId     String     @db.ObjectId
 }
@@ -34,7 +34,7 @@ model posts {
 model comments {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   comment    String
-  post       posts    @relation(fields: [postId], references: [id])
+  post       posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId     String   @db.ObjectId
   author     String
   created_at DateTime @default(now())

@@ -28,6 +28,11 @@ router.get(
 
   postController.singlePost
 );
+router.get(
+  `${basePath}user/post/:id`,
+
+  postController.userPosts
+);
 router.delete(
   `${basePath}blog/:id`,
 

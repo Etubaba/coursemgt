@@ -27,6 +27,11 @@ class PostController {
         const response = await postService.singlePost(slug);
         res.status(response.statusCode).json(response);
     }
+    async userPosts(req, res) {
+        const id = req.params.id;
+        const response = await postService.userPost(id);
+        res.status(response.statusCode).json(response);
+    }
     async deletePost(req, res) {
         const id = req.params.id;
         const response = await postService.deletePost(id);

@@ -101,6 +101,27 @@ export class PostService {
     }
   }
 
+  async userPost(id: string) {
+    try {
+      const user = await prisma.users.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (!user) return { statusCode: 404, message: "User not found" };
+
+      const posts = await prisma.posts.findMany({
+        where: {
+          userId: id,
+        },
+      });
+
+      return { statusCode: 200, data: posts };
+    } catch (err) {
+      return { statusCode: 500, message: err.message };
+    }
+  }
+
   async updatePost(id: string, updatePostDto: UpdatePostDto) {
     try {
       const { title, content, userId }: UpdatePostDto = updatePostDto;

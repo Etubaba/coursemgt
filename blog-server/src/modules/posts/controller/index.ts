@@ -15,7 +15,8 @@ export class PostController {
   async updatePostController(req: Request, res: Response) {
     const updatePostDto: UpdatePostDto = req.body;
     const id = req.params.id;
-    const response = await postService.updatePost(id, updatePostDto);
+    const image = req.file?.path;
+    const response = await postService.updatePost(id, updatePostDto, image);
     res.status(response.statusCode).json(response);
   }
 

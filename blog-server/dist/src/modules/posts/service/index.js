@@ -102,7 +102,7 @@ class PostService {
             return { statusCode: 500, message: err.message };
         }
     }
-    async updatePost(id, updatePostDto) {
+    async updatePost(id, updatePostDto, image) {
         try {
             const { title, content } = updatePostDto;
             const Post = await main_1.prisma.posts.findUnique({
@@ -119,6 +119,7 @@ class PostService {
                 data: {
                     title,
                     content,
+                    image,
                 },
             });
             return { statusCode: 200, data: newPost };

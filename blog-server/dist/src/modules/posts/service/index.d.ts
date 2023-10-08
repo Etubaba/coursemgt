@@ -93,7 +93,7 @@ export declare class PostService {
         message: any;
         data?: undefined;
     }>;
-    updatePost(id: string, updatePostDto: UpdatePostDto): Promise<{
+    updatePost(id: string, updatePostDto: UpdatePostDto, image: string): Promise<{
         statusCode: number;
         data: {
             id: string;

@@ -12,9 +12,11 @@ class PostController {
         res.status(response.statusCode).json(response);
     }
     async updatePostController(req, res) {
+        var _a;
         const updatePostDto = req.body;
         const id = req.params.id;
-        const response = await postService.updatePost(id, updatePostDto);
+        const image = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
+        const response = await postService.updatePost(id, updatePostDto, image);
         res.status(response.statusCode).json(response);
     }
     async allPost(req, res) {

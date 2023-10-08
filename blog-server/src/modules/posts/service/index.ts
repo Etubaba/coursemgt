@@ -122,7 +122,7 @@ export class PostService {
     }
   }
 
-  async updatePost(id: string, updatePostDto: UpdatePostDto) {
+  async updatePost(id: string, updatePostDto: UpdatePostDto, image: string) {
     try {
       const { title, content }: UpdatePostDto = updatePostDto;
       //check if record exist
@@ -142,6 +142,7 @@ export class PostService {
         data: {
           title,
           content,
+          image,
         },
       });
 

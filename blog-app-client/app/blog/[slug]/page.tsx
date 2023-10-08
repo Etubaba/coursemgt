@@ -1,32 +1,21 @@
 "use client";
 import BlogItem from "@/components/home/BlogItem";
 import Divider from "@/components/common/Divider";
-import { BASE_URL } from "@/constant";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useQueries } from "@tanstack/react-query";
-import axios from "axios";
 import Comments from "@/components/home/blogdetails/Comments";
 import { CommentType } from "@/types";
 import BackDrop from "@/components/common/BackDrop";
+import { fetchPostDetails, fetchRelated } from "@/constant/requestManager";
 
 const page = () => {
   const { slug } = useParams();
-
-  const fetchPostDetails = async () => {
-    const { data } = await axios.get(`${BASE_URL}/blog/${slug}`);
-    return data;
-  };
-  const fetchRelated = async () => {
-    const { data } = await axios.get(`${BASE_URL}/blog`);
-    return data;
-  };
-
   const [postDetailsRes, relatedPostRes] = useQueries({
     queries: [
-      { queryKey: ["post"], queryFn: fetchPostDetails },
+      { queryKey: ["post"], queryFn: () => fetchPostDetails(slug as string) },
       { queryKey: ["relatedPost"], queryFn: fetchRelated },
     ],
   });

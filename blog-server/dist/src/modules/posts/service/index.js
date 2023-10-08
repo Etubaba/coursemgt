@@ -104,7 +104,7 @@ class PostService {
     }
     async updatePost(id, updatePostDto) {
         try {
-            const { title, content, userId } = updatePostDto;
+            const { title, content } = updatePostDto;
             const Post = await main_1.prisma.posts.findUnique({
                 where: {
                     id,
@@ -119,7 +119,6 @@ class PostService {
                 data: {
                     title,
                     content,
-                    userId,
                 },
             });
             return { statusCode: 200, data: newPost };

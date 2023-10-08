@@ -41,3 +41,8 @@ export interface IPostComment {
   author: string;
   comment: string;
 }
+
+export type EditorType = {
+  value: string;
+  onChange: (e: string) => void;
+};

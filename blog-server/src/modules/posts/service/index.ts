@@ -124,7 +124,7 @@ export class PostService {
 
   async updatePost(id: string, updatePostDto: UpdatePostDto) {
     try {
-      const { title, content, userId }: UpdatePostDto = updatePostDto;
+      const { title, content }: UpdatePostDto = updatePostDto;
       //check if record exist
       const Post = await prisma.posts.findUnique({
         where: {
@@ -142,7 +142,6 @@ export class PostService {
         data: {
           title,
           content,
-          userId,
         },
       });
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 const BlogItem = ({ post }: { post: BlogType }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
-      <div className="md:w-64 w-80 mb-4 md:mb-0 h-auto  ">
+      <div className="md:w-64 w-80 mb-4 md:mb-6 h-auto  ">
         <div className="w-full relative h-40 inline-block overflow-hidden">
           <img
             src={post.image}

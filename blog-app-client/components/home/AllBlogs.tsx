@@ -16,7 +16,7 @@ const AllBlogs = () => {
   const [search, setSearch] = useState<string>("");
   const page: number = usePagination((state) => state.page);
 
-  const { data, error, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["blog"],
     queryFn: async () => {
       const { data } = await axios.get(`${BASE_URL}/blog?page=${page}`);
@@ -52,7 +52,7 @@ const AllBlogs = () => {
             title={"No Blog Available"}
           />
         ) : (
-          <div className="grid gap-2 lg:gap-3 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+          <div className="grid gap-2 lg:gap-4 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             {blogs
               ?.filter((blog) => {
                 if (search === "") return blog;

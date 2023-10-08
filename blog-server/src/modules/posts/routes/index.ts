@@ -20,6 +20,7 @@ router.post(
 );
 router.put(
   `${basePath}blog/:id`,
+  upload.single("image"),
   validateDto(UpdatePostDto),
   postController.updatePostController
 );

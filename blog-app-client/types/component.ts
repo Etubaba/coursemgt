@@ -52,3 +52,18 @@ export type SideBarType = {
   setShow?: React.Dispatch<React.SetStateAction<boolean>>;
   show?: boolean;
 };
+
+export interface ModalType {
+  children: React.ReactNode;
+  title?: string;
+  open: boolean;
+  onClose: any;
+}
+
+export interface PreviewImgType {
+  preview: string;
+  file: Blob[];
+  index: number;
+  setPreview: React.Dispatch<React.SetStateAction<string | null>>;
+  setFile: React.Dispatch<React.SetStateAction<Blob[]>>;
+}

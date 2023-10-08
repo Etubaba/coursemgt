@@ -25,6 +25,7 @@ const Input = ({
           style !== undefined ? style : ""
         }  text-[13px] text-textcolor bg-transparent   w-full outline-none`}
         type={type}
+        onChange={onChange}
         onBlur={() => {
           setOutline(false);
         }}
@@ -32,6 +33,7 @@ const Input = ({
           setOutline(true);
         }}
         placeholder={placeholder}
+        value={value}
       />
     </div>
   );

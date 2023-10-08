@@ -3,8 +3,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 const userStore = (set: any) => ({
-  user: null,
-
+  user: null as UserPropType | null,
   authenticateUser: (user: UserPropType | null) => {
     set({ user });
   },

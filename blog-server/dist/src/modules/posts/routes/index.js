@@ -12,7 +12,7 @@ const basePath = "/api/";
 const upload = multer({ storage: index_1.default });
 const postController = new controller_1.PostController();
 router.post(`${basePath}blog`, upload.single("image"), (0, validateDto_1.validateDto)(createPostDto_1.CreatePostDto), postController.createPostController);
-router.put(`${basePath}blog/:id`, (0, validateDto_1.validateDto)(updatePostDto_1.UpdatePostDto), postController.updatePostController);
+router.put(`${basePath}blog/:id`, upload.single("image"), (0, validateDto_1.validateDto)(updatePostDto_1.UpdatePostDto), postController.updatePostController);
 router.get(`${basePath}blog/:slug`, postController.singlePost);
 router.get(`${basePath}user/post/:id`, postController.userPosts);
 router.delete(`${basePath}blog/:id`, postController.deletePost);

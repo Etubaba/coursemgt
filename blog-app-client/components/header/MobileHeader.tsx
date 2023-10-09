@@ -32,7 +32,7 @@ const MobileNav = () => {
         <div
           className={`w-full absolute ${
             !checked && "opacity-0"
-          } px-5 pt-5 top-12 animate__animated animate__fadeInLeft z-50 flex flex-col text-center h-auto justify-center space-y-3 items-start bg-white `}
+          } px-5 pt-5 pb-6 top-12 animate__animated animate__fadeInLeft z-50 flex flex-col text-center h-auto justify-center space-y-3 items-start bg-white `}
         >
           <Link href={"/auth/login"}>
             <p

@@ -12,7 +12,6 @@ const MobileNav = () => {
   const currentPath = usePathname();
   const show = useNavToggle((state) => state.show);
 
-  //   if (currentPath.includes("/admin")) return <AdminHeader />;
   if (currentPath.includes("/auth")) return;
 
   return (

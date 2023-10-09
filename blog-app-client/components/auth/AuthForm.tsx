@@ -15,8 +15,6 @@ import { setCookie } from "cookies-next";
 import Link from "next/link";
 
 const AuthForm = ({ login }: { login: boolean }) => {
-  const [drop, setDrop] = useState(false);
-
   const router = useRouter();
   const {
     register,
@@ -63,10 +61,6 @@ const AuthForm = ({ login }: { login: boolean }) => {
   const onSubmit = (data: any) => {
     mutate(data);
   };
-
-  //   if (drop) setTimeout(() => setDrop(false), 4000);
-
-  //   if (drop) return <BackDrop />;
 
   return (
     <div className="bg-white shadow-lg animate__fadeIn animate__animated rounded-md w-full md:w-[500px] p-7">

@@ -10,6 +10,7 @@ import Comments from "@/components/home/blogdetails/Comments";
 import { CommentType } from "@/types";
 import BackDrop from "@/components/common/BackDrop";
 import { fetchPostDetails, fetchRelated } from "@/constant/requestManager";
+import { relatedPost } from "@/utils/relatedPost";
 
 const page = () => {
   const { slug } = useParams();
@@ -72,9 +73,11 @@ const page = () => {
         <h1 className=" text-xl my-10   text-title">Related Articles </h1>
 
         <div className="grid  mt-5 gap-2 lg:gap-3 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
-          {related?.slice(0, 4).map((blog: any) => (
-            <BlogItem post={blog} />
-          ))}
+          {relatedPost(related)
+            ?.slice(0, 4)
+            .map((blog: any) => (
+              <BlogItem post={blog} />
+            ))}
         </div>
       </div>
     </div>

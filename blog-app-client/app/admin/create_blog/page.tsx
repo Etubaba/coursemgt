@@ -44,12 +44,12 @@ const page = () => {
     },
   });
 
-  // mutation for post post update
+  // mutation for post  update
   const { mutate: updateMutate, isLoading: updateLoading } = useMutation(
     updatePost,
     {
       onSuccess: () => {
-        toast.success(`Updated completed`, {
+        toast.success(`Post update completed`, {
           position: "top-right",
         });
         router.push("/admin");
@@ -76,7 +76,7 @@ const page = () => {
     },
   });
 
-  //convert url to blob object on edit
+  //convert image url to file blob object on edit
   useEffect(() => {
     if (searchParams.get("id") === null) return;
     const setBlob = async () => {
@@ -114,13 +114,10 @@ const page = () => {
         position: "top-right",
       });
     const userId = user?.id as string;
-    // if (isImageEdited()) {
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-
-    //check for update
-    searchParams.get("id") === null && formData.append("userId", userId);
 
     // check if image is edited
     isImageEdited() && formData.append("image", fileBlob[0]);

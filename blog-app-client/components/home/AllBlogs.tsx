@@ -69,7 +69,7 @@ const AllBlogs = () => {
       </div>
 
       <div className="my-10 w-full ">
-        <Pagination totalPage={data?.total_page as number} />
+        <Pagination refetch={refetch} totalPage={data?.total_page as number} />
       </div>
     </div>
   );

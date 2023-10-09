@@ -3,7 +3,13 @@ import { usePagination } from "@/store";
 import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-const Pagination = ({ totalPage }: { totalPage: number }) => {
+const Pagination = ({
+  totalPage,
+  refetch,
+}: {
+  totalPage: number;
+  refetch: () => any;
+}) => {
   const currentPage = usePagination((state) => state.page);
   const setPage = usePagination((state) => state.setPage);
   const pageNumber = [];
@@ -12,15 +18,19 @@ const Pagination = ({ totalPage }: { totalPage: number }) => {
   }
 
   const prev = () => {
-    if (currentPage > 1) return setPage(currentPage - 1);
+    if (currentPage > 1) {
+      setPage(currentPage - 1);
+      refetch();
+    }
     return;
   };
   const next = () => {
     if (currentPage < totalPage) {
-      return setPage(currentPage + 1);
-    } else {
-      return;
+      setPage(currentPage + 1);
+
+      refetch();
     }
+    return;
   };
   return (
     <div className="flex md:flex-row flex-col items-center justify-center  md:justify-between">

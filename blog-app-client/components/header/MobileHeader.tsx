@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Toggle from "./MenuToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SideNav from "../admin/layout/SideBar";
+import SideNav from "../admin/layout/SideNav";
 import { useNavToggle } from "@/store";
 
 const MobileNav = () => {

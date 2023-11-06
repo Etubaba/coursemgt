@@ -15,7 +15,9 @@ const BlogItem = ({ post }: { post: BlogType }) => {
             alt={post.title}
           />
         </div>
-        <p className="mb-2 text-lg text-title  font-bold">{post.title}</p>
+        <p className="mb-2 text-lg text-title  font-bold">
+          {post.title.substring(0, 40) + "..."}
+        </p>
         <div className="text-textcolor  text-sm ">
           {new Date(post.created_at).toDateString()}
         </div>
